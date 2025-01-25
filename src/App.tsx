@@ -20,7 +20,7 @@ function App() {
         AUTORES: Eloy y Corina
       </h2>
       <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam beatae nam quaerat porro, mollitia dolore, minima, maiores labore similique maxime corrupti earum praesentium officia soluta saepe non? Eius, asperiores officiis?
+        ---------CAMBIOS DE CORINA------------
       </p>
     </>
   )
