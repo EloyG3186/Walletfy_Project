@@ -9,7 +9,8 @@ function App() {
   return (
     <>
       <h1>
-      WALLETFY
+      PROYECTO WALLETFY
+      AUTORES: Eloy y Corina
       </h1>
     </>
   )
