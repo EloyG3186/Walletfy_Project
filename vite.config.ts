@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: 'https://dcortesnet.github.io/Reactjs-deploy-githubpages'
+  base: 'https://EloyG3186.github.io/Walletfy_Project'
 })
