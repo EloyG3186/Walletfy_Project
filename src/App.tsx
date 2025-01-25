@@ -10,8 +10,10 @@ function App() {
     <>
       <h1>
       PROYECTO WALLETFY
-      AUTORES: Eloy y Corina
       </h1>
+      <h2>
+      AUTORES: Eloy y Corina
+      </h2>
     </>
   )
 }
