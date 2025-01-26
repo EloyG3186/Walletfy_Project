@@ -1,6 +1,6 @@
 const Header = () => {
     return (
-        <div className="cd-font-sans cd-header cd-flex cd-items-center cd-justify-between cd-bg-slate-50 cd-p-4 cd-shadow-md" >
+        <div className="fixed-div cd-font-sans cd-header cd-flex cd-items-center cd-justify-between cd-bg-slate-50 cd-p-4 cd-shadow-md" >
             <h1 className="cd-text-3xl cd-font-bold cd-text-black cd-m-3">Wallet
                 <span className="cd-text-violet-700">fy</span>
             </h1>
