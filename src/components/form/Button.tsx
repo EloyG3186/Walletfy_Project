@@ -13,8 +13,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
         <div>
             <button
-                className="cd-py-2 cd-ml-2 cd-text-white cd-bg-blue-500 cd-rounded-md hover:cd-bg-blue-700"
-                type="submit"
+                className="cd-font-sans cd-font-medium cd-py-3 cd-px-8 cd-ml-5 cd-text-white cd-bg-violet-500 cd-rounded-lg hover:cd-bg-violet-700 cd-text-lg cd-shadow-lg"
+                type="submit" 
                 ref={ref}
             >
                 {caption}

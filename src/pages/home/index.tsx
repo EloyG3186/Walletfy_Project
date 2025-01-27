@@ -5,8 +5,14 @@ import Body from "./body";
 const Home = () => {
     return (
         <div>
-            <Header/>
-            <Body/>
+            <div>
+                <Header />
+            </div>
+
+            <div className="cd-p-20">
+                <Body />
+            </div>
+
         </div>
     );
 };
