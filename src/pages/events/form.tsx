@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Input from '@components/form/Input';
 import InputDate from '@components/form/InputDate';
 import NumberInput from '@components/form/NumberInput';

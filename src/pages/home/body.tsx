@@ -2,6 +2,7 @@
 import NumberInput from '@components/form/NumberInput';
 import Button from '@components/form/Button';
 import { useState } from 'react';
+//import { set } from 'zod';
 
 const Body = () => {
     const [inputValue, setInputValue] = useState<string>('');
@@ -13,7 +14,7 @@ const Body = () => {
                     <NumberInput
                         label="Dinero Inicial"
                         value={inputValue}
-                        onChange={() => { }}
+                        onChange={() => {setInputValue}}
                     />
                     <Button caption="Calcular" />
                 </div>
