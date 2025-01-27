@@ -1,9 +1,9 @@
 const Header = () => {
     return (
-        <div className="fixed-div cd-font-sans cd-header cd-flex cd-items-center cd-justify-between cd-bg-slate-50 cd-p-4 cd-shadow-md" >
-            <h1 className="cd-text-3xl cd-font-bold cd-text-black cd-m-3">Wallet
+        <header className=" fixed-div cd-font-sans cd-header cd-flex cd-items-center cd-justify-between  cd-p-4  cd-shadow-md" >
+            <a href="" className="cd-text-3xl cd-font-bold cd-text-black cd-m-3">Wallet
                 <span className="cd-text-violet-700">fy</span>
-            </h1>
+            </a>
             <button className="cd-p-3 cd-rounded-md cd-shadow-lg cd-bg-gray-200 cd-mx-6 ">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="tabler-icon tabler-icon-moon "
@@ -14,7 +14,7 @@ const Header = () => {
                 </span>
             </button>
 
-        </div >
+        </header >
 
     )
 }
