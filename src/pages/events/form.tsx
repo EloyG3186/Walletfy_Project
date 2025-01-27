@@ -5,7 +5,7 @@ import NumberInput from '@components/form/NumberInput';
 import SelectInput from '@components/form/Select';
 import Attachment from '@components/form/Attachment';
 import Button from '@components/form/Button';
-
+import Header from '@pages/home/header';
 
 const EventForm = () => {
     const [inputValue, setInputValue] = useState<string>('');
@@ -15,44 +15,49 @@ const EventForm = () => {
         };*/
 
     return (
-        <div className="cd-flex cd-flex-col cd-items-center cd-gap-4 cd-justify-center cd-bg-slate-50">
-            <h1>Eventos</h1>
-            <Input
-                label="Name"
-                value={inputValue}
-                onChange={() => { setInputValue }}
-            />
-            <Input
-                label="Description"
-                value={inputValue}
-                onChange={() => { setInputValue }}
-            />
+        <div>
 
-            <InputDate
-                label="Date"
-                value={inputValue}
-                onChange={() => { setInputValue }}
-            />
+            <header>
+                <Header/>
+            </header>
 
-            <NumberInput
-                label="Amount"
-                value={inputValue}
-                onChange={() => { setInputValue }}
-            />
+            <div className="cd-flex cd-flex-col cd-items-center cd-gap-4 cd-justify-center">
+                <h1>Eventos</h1>
+                <Input
+                    label="Name"
+                    value={inputValue}
+                    onChange={() => { setInputValue }}
+                />
+                <Input
+                    label="Description"
+                    value={inputValue}
+                    onChange={() => { setInputValue }}
+                />
 
-              <SelectInput
-                label="Role"
-                value={inputValue}
-                options={['income', 'expense']}
-                onChange={() => { setInputValue }}  
-              />
+                <InputDate
+                    label="Date"
+                    value={inputValue}
+                    onChange={() => { setInputValue }}
+                />
 
-              <Attachment />
+                <NumberInput
+                    label="Amount"
+                    value={inputValue}
+                    onChange={() => { setInputValue }}
+                />
 
+                <SelectInput
+                    label="Role"
+                    value={inputValue}
+                    options={['income', 'expense']}
+                    onChange={() => { setInputValue }}
+                />
+
+                <Attachment />
                 <Button
                     caption="Submit"
                 />
-
+            </div>
         </div>
     );
 }

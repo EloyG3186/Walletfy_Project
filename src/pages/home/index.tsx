@@ -5,9 +5,9 @@ import Body from "./body";
 const Home = () => {
     return (
         <div>
-            <div>
+            <header>
                 <Header />
-            </div>
+            </header>
 
             <div className="cd-p-20">
                 <Body />
