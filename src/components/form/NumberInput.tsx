@@ -10,7 +10,7 @@ type InputProps = {
 
 const NumberInput = React.forwardRef<HTMLInputElement, InputProps>(
     (props, ref) => {
-        const { label, error, onChange, className } = props;
+        const { label, error, className } = props;
 
         const [value, setValue] = useState<string>('');
 
