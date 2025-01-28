@@ -28,6 +28,7 @@
        "@components/*": ["src/components/*"],
        "@customTypes/*": ["src/types/*"],
        "@pages/*": ["src/pages/*"],
+       "@context/*": ["src/context/*"],
          }
   },
   "include": ["src"]

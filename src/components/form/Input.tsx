@@ -14,7 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         return (
             <div className={className}>
-                <label className="cd-block cd-text-lg cd-font-sans cd-font-medium cd-text-gray-800">
+                <label className="cd-block cd-text-lg cd-font-sans cd-font-medium">
                     {label}
                 </label>
                 <input

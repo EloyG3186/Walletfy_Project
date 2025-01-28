@@ -10,6 +10,7 @@ export default defineConfig({
       '@components': resolve(__dirname,'./src/components'),
       '@pages': resolve(__dirname,'./src/pages'),
       '@customTypes': resolve(__dirname, './src/types'),
+      '@context': resolve(__dirname, './src/context'),
     },
   },
 
