@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Attachment: React.FC = () => {
+const Attachment: React.FC<{ label: string }> = ({ label }) => {
     const [image, setImage] = useState<string | ArrayBuffer | null>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,12 +18,16 @@ const Attachment: React.FC = () => {
 
     return (
         <div className="attachment-container">
-            <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="attachment-input"
-            />
+            <label className='attachment-label cd-text-gray-900 cd-font-medium cd-font-sans'>
+                {label}
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className=" cd-mt-1 cd-flex cd-justify-start cd-w-full cd-px-40 cd-py-3 cd-border cd-border-gray-300 cd-rounded-md cd-shadow-sm focus:cd-outline-none fous:cd-ring-indigo"
+                />
+            </label>
+
             {image && (
                 <div className="attachment-preview">
                     <img src={image as string} alt="Preview" className="attachment-image" />

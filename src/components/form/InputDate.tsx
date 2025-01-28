@@ -14,12 +14,12 @@ const InputDate: React.FC<InputDateProps> = ({ label, value, onChange, className
 
     return (
         <div className={`input-date-container ${className}`}>
-            <label className="input-date-label">{label}</label>
+            <label className="input-date-label cd-block cd-text-lg cd-font-sans cd-font-medium cd-text-gray-800">{label}</label>
             <input
                 type="date"
                 value={value}
                 onChange={handleChange}
-                className="input-date"
+                className="input-date cd-mt-1 cd-block cd-w-full cd-px-3 cd-py-3 cd-border cd-border-gray-300 cd-rounded-md cd-shadow-sm focus:cd-outline-none fous:cd-ring-indigo"
             />
         </div>
     );
