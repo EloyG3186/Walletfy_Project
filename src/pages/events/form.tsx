@@ -22,7 +22,7 @@ const EventForm = () => {
             </header>
 
 
-            <main className="cd-flex cd-flex-col cd-items-center cd-w-full cd-p-20 cd-justify-center">
+            <main className="cd-flex cd-flex-col cd-items-center cd-w-full cd-pt-10 cd-justify-center">
                 <div className="cd-bg-gray-100 cd-px-10 cd-py-5 cd-mt-[2rem] cd-flex cd-flex-col">
                     <form className=' cd-items-center'>
 
