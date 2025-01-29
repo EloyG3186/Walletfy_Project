@@ -12,13 +12,13 @@ type SelectProps = {
   
     return (
       <div className={className}>
-        <label className="cd-block cd-text-lg cd-font-sans cd-font-medium">
+        <label className="cd-block cd-text-lg cd-pt-2 cd-font-sans cd-font-medium">
           {label}
         </label>
         <select
           //value={value}
           //onChange={(e) => onChange(e.target.value)}
-          className="cd-mt-1 cd-block cd-w-full cd-text-lg cd-px-3 cd-py-3 cd-border cd-border-gray-300 dark:cd-border-gray-100 dark:cd-bg-zinc-700 cd-rounded-md cd-shadow-sm focus:cd-outline-none focus:cd-ring-indigo-500 focus:cd-border-indigo-500 lg:cd-text-lg"
+          className="cd-mt-1  cd-block cd-w-full cd-text-lg cd-px-3 cd-py-3 cd-border cd-border-gray-300 dark:cd-border-gray-100 dark:cd-bg-zinc-700 cd-rounded-md cd-shadow-sm focus:cd-outline-none focus:cd-ring-indigo-500 focus:cd-border-indigo-500 lg:cd-text-lg"
         >
           {options.map((option) => (
             <option className=" cd-text-lg" key={option} value={option}>

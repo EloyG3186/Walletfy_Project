@@ -18,13 +18,13 @@ const Attachment: React.FC<{ label: string }> = ({ label }) => {
 
     return (
         <div className="attachment-container">
-            <label className='attachment-label cd-font-medium cd-font-sans'>
+            <label className='attachment-label  cd-font-medium cd-font-sans'>
                 {label}
                 <input
                     type="file"
                     accept="image/*"
                     onChange={handleFileChange}
-                    className=" cd-mt-1 cd-flex cd-justify-start cd-w-full dark:cd-bg-zinc-700 cd-px-40 cd-py-3 cd-border cd-border-gray-300 dark:cd-border-gray-100 cd-rounded-md cd-shadow-sm focus:cd-outline-none fous:cd-ring-indigo"
+                    className="cd-mt-1 cd-flex cd-justify-start cd-w-full dark:cd-bg-zinc-700 cd-px-40 cd-py-2 cd-border cd-border-gray-300 dark:cd-border-gray-100 cd-rounded-md cd-shadow-sm focus:cd-outline-none fous:cd-ring-indigo"
                 />
             </label>
 

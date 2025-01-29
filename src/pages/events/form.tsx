@@ -17,12 +17,12 @@ const EventForm = () => {
     return (
         <section className="cd-w-full">
 
-           <main className="cd-flex cd-flex-col cd-items-center cd-w-full cd-pt-10 cd-justify-center">
-                <div className="cd-bg-gray-100 cd-px-10  cd-mt-[2rem] cd-flex cd-flex-col dark:cd-bg-zinc-800 ">
-                    <form className='cd-items-center cd-text-lg  dark:cd-text-white '>
+           <main className="cd-flex cd-flex-col cd-items-center cd-w-full cd-pt-5 cd-pb-14 cd-justify-center">
+                <div className=" cd-px-10  cd-mt-[2rem] cd-flex cd-flex-col dark:cd-bg-zinc-800 ">
+                    <form className='cd-flex cd-flex-col cd-text-lg  dark:cd-text-white '>
 
 
-                        <h1 className='cd-py-4'>Create Event</h1>
+                        <h1 className='cd-pb-8'>Create Event</h1>
                         <div>
                             <Input
                                 label="Name"
@@ -31,7 +31,7 @@ const EventForm = () => {
                             />
                         </div>
 
-                        <div className='cd-py-4'>
+                        <div className='cd-py-1'>
                             <Input
                                 label="Description"
                                 //value={inputValue}
