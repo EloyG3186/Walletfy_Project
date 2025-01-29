@@ -26,41 +26,41 @@ const EventForm = () => {
                         <div>
                             <Input
                                 label="Name"
-                                value={inputValue}
-                                onChange={() => { setInputValue }}
+                                //value={inputValue}
+                                //onChange={() => {  }}
                             />
                         </div>
 
                         <div className='cd-py-4'>
                             <Input
                                 label="Description"
-                                value={inputValue}
-                                onChange={() => { setInputValue }}
+                                //value={inputValue}
+                                //onChange={() => { setInputValue }}
                             />
                         </div>
 
                         <div className='cd-py-1'>
                             <InputDate
                                 label="Date"
-                                value={inputValue}
-                                onChange={() => { setInputValue }}
+                                //value={inputValue}
+                               //onChange={() => { setInputValue }}
                             />
                         </div>
 
                         <div className='cd-py-1 '>
                             <NumberInput
                                 label="Amount"
-                                value={inputValue}
-                                onChange={() => { setInputValue }}
+                                //value={inputValue}
+                                //onChange={() => { setInputValue }}
                             />
                         </div>
 
                         <div className='cd-py-1 '>
                             <SelectInput
                                 label="Type"
-                                value={inputValue}
+                                //value={inputValue}
                                 options={['income', 'expense']}
-                                onChange={() => { setInputValue }}
+                                //onChange={() => { setInputValue }}
                             />
                         </div>
                       

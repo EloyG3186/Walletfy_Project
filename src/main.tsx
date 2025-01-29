@@ -43,6 +43,7 @@ function App() {
   const [state, setState] = React.useState<MyContextType>(INITIAL_STATE);
 
   React.useEffect(() => {
+    
     const schema = localStorage.getItem('schema') as 'light' | 'dark' | null;
 
     if (schema) {
