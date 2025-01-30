@@ -11,6 +11,8 @@ export default defineConfig({
       '@pages': resolve(__dirname,'./src/pages'),
       '@customTypes': resolve(__dirname, './src/types'),
       '@context': resolve(__dirname, './src/context'),
+      '@store': resolve(__dirname, './src/store'),
+      '@hooks': resolve(__dirname, './src/hooks'),
     },
   },
 

@@ -29,6 +29,8 @@
        "@customTypes/*": ["src/types/*"],
        "@pages/*": ["src/pages/*"],
        "@context/*": ["src/context/*"],
+       "@store/*": ["src/store/*"],
+       "@hooks/*": ["src/hooks/*"],
          }
   },
   "include": ["src"]
