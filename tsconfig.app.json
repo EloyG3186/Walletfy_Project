@@ -29,6 +29,7 @@
        "@customTypes/*": ["src/types/*"],
        "@pages/*": ["src/pages/*"],
        "@context/*": ["src/context/*"],
+       "@models/*": ["src/models/*"],
          }
   },
   "include": ["src"]

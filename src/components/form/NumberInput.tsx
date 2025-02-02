@@ -1,25 +1,20 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-type InputProps = {
+type NumberInputProps = {
     label: string;
-    value?: string;
+    value: number;
     error?: string;
     className?: string;
-    onChange?: (value: boolean) => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const NumberInput = React.forwardRef<HTMLInputElement, InputProps>(
+const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     (props, ref) => {
-        const { label, error, className, } = props;
+        const { label, value, onChange, error, className } = props;
 
-        const [value, setValue] = useState<string>('');
+        //const [value, setValue] = useState<string>('');
 
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-          const newValue = e.target.value;
-          if (/^\d*\.?\d*$/.test(newValue) && parseFloat(newValue) > 0) {
-            setValue(newValue);
-          }
-        };
+
 
         return (
             <div className={className}>
@@ -29,13 +24,14 @@ const NumberInput = React.forwardRef<HTMLInputElement, InputProps>(
                 <input
                     ref={ref}
                     type="number"
-                    //value={value}
-                    //onChange={(e) => handleChange(e)}
-                    className="cd-mt-1 cd-block cd-w-full dark:cd-text-gray-300 cd-px-7 cd-py-2 dark:cd-bg-zinc-700 cd-border cd-border-gray-300 dark:cd-border-gray-100 cd-rounded-md cd-shadow-sm focus:cd-outline-none fous:cd-ring-indigo"
+                    value={value}
+                    onChange={onChange}
+                    className="cd-mt-1 cd-px-3 cd-font-sans cd-block cd-w-full cd-text-gray-900 dark:cd-text-gray-200 cd-py-2 dark:cd-bg-zinc-700 cd-border cd-border-gray-300 dark:cd-border-gray-500 cd-rounded-md cd-shadow-sm focus:cd-outline-none fous:cd-ring-indigo"
                 />
                 {error && <p className="cd-mt-2 cd-text-sm cd-text-red-600">{error}</p>}
             </div>
         );
-    });
+    }
+);
 
 export default NumberInput;
