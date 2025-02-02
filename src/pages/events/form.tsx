@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createEvent, Event } from '@models/Event'; // MODELS
+import { createEvent, Event, saveEventsToLocalStorage } from '@models/Event'; // MODELS
 import Input from '@components/form/Input';
 import InputDate from '@components/form/InputDate';
 import NumberInput from '@components/form/NumberInput';
@@ -20,7 +20,6 @@ const EventForm = () => {
     const [date, setDate] = useState<string>('');
     const [attachment, setAttachment] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
-    const [events, setEvents] = useState<Event[]>([]);
 
 
     //handleSubmit se encarga de crear un nuevo evento con los valores actuales de los campos del formulario
@@ -28,8 +27,8 @@ const EventForm = () => {
         e.preventDefault();
         try {
             const newEvent: Event = createEvent(name, amount, type, date, description, attachment);
-            setEvents([...events, newEvent]);
-            console.log('Event created:', newEvent);
+            //nuevo evento en localStorage
+            saveEventsToLocalStorage(newEvent);
             // Reset form fields
             setName('');
             setDescription('');
@@ -117,21 +116,7 @@ const EventForm = () => {
                             Submit
                         </button>
                     </form>
-                    <div className="cd-mt-8">
-                        <h2 className="cd-text-xl dark:cd-text-gray-300 cd-font-bold">Created Events</h2>
-                        <ul className="cd-text-gray-800 dark:cd-text-gray-300">
-                            {events.map((event) => (
-                                <li key={event.id}>
-                                    <p>ID: {event.id}</p>
-                                    <p>Name: {event.name}</p>
-                                    <p>Description: {event.description}</p>
-                                    <p>Amount: {event.amount}</p>
-                                    <p>Type: {event.type}</p>
-                                    <p>Date: {event.date}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                   
                 </div >
             </main>
 

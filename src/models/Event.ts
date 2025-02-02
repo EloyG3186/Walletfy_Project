@@ -47,3 +47,17 @@ export const createEvent = (
         attachment,
     };
 };
+
+// Guardar en localStorage: 
+
+export const saveEventsToLocalStorage = (event: Event) => {
+    // Obtener los eventos existentes del localStorage
+
+    const events = JSON.parse(localStorage.getItem('events') || '[]')
+
+    // Agregar el nuevo evento a la lista de eventos
+    events.push(event);
+
+    // Guardar la lista actualizada de eventos en el localStorage
+    localStorage.setItem('events', JSON.stringify(events));
+};
