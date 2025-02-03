@@ -9,14 +9,14 @@ interface AttachmentProps {
 }
 
 const Attachment: React.FC<AttachmentProps> = ({ label, onChange, className }) => {
-    const [image, setImage] = useState<string | ArrayBuffer | null>(null);
+   // const [image, setImage] = useState<string | ArrayBuffer | null>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file && file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setImage(reader.result);
+                //setImage(reader.result);
                  // Generar un UUID para el archivo
                 onChange({
                     ...e,
