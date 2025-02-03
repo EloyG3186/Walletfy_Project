@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
+//import { v4 as uuidv4 } from 'uuid';
 
-const Attachment: React.FC<{ label: string }> = ({ label }) => {
+interface AttachmentProps {
+    label: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    className?: string;
+}
+
+const Attachment: React.FC<AttachmentProps> = ({ label, onChange, className }) => {
     const [image, setImage] = useState<string | ArrayBuffer | null>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -9,6 +17,14 @@ const Attachment: React.FC<{ label: string }> = ({ label }) => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImage(reader.result);
+                 // Generar un UUID para el archivo
+                onChange({
+                    ...e,
+                    target: {
+                        ...e.target,
+                        value: reader.result as string, // Base 64 img
+                    },
+                });
             };
             reader.readAsDataURL(file);
         } else {
@@ -17,22 +33,22 @@ const Attachment: React.FC<{ label: string }> = ({ label }) => {
     };
 
     return (
-        <div className="attachment-container">
-            <label className='attachment-label  cd-font-medium cd-font-sans'>
-                {label}
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="cd-mt-1 cd-flex cd-justify-start cd-w-full dark:cd-bg-zinc-700 cd-px-40 cd-py-2 cd-border cd-border-gray-300 dark:cd-border-gray-100 cd-rounded-md cd-shadow-sm focus:cd-outline-none fous:cd-ring-indigo"
-                />
-            </label>
-
-            {image && (
-                <div className="attachment-preview">
-                    <img src={image as string} alt="Preview" className="attachment-image" />
+        <div className={`attachment-container ${className}`}>
+            <label className="attachment-label cd-pt-2 cd-font-medium cd-block cd-text-lg cd-font-sans ">{label}</label>
+            <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="attachment-input cd-text-gray-900 dark:cd-text-gray-200 cd-font-sans cd-mt-1 cd-block cd-w-full cd-px-3 cd-py-2 dark:cd-bg-zinc-700 cd-border cd-border-gray-300 dark:cd-border-gray-500 cd-rounded-md cd-shadow-sm focus:cd-outline-none focus:cd-ring-indigo"
+            />
+            {/*image && <img src={image as string} alt="Attachment preview" className="cd-mt-2 cd-w-full cd-h-auto" />*/
+           /* image && (
+                <div className="attachment-preview cd-mt-2">
+                    {/*<img src={image as string} alt="Preview" className="attachment-image cd-w-full cd-h-auto cd-rounded-md" />}
                 </div>
-            )}
+            )*/
+            
+            }
         </div>
     );
 };

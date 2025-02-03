@@ -4,7 +4,7 @@ import MyContext from '@context/index';
 
 const Header = () => {
 
-    const { schema, toggleSchema } = React.useContext(MyContext);
+    const { toggleSchema } = React.useContext(MyContext);
 
     return (
         <header className=" cd-fixed-div cd-font-sans  cd-flex cd-items-center cd-justify-between cd-p-4 cd-shadow-md dark:cd-bg-zinc-800" >
