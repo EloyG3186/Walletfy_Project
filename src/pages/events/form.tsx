@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import Input from '@components/form/Input';
 import InputDate from '@components/form/InputDate';
 import NumberInput from '@components/form/NumberInput';
 import SelectInput from '@components/form/Select';
 import Attachment from '@components/form/Attachment';
-//import Button from '@components/form/Button';
 
 
 const EventForm = () => {
-    const [inputValue, setInputValue] = useState<string>('');
-    /*
-        const handleInputChange = (value: string) => {
-            setInputValue(value);
-        };*/
+
+useEffect(() => {
+
+        localStorage.setItem('event', JSON.stringify();
+
+})
 
     return (
         <section className="cd-w-full">
