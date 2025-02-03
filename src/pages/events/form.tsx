@@ -21,7 +21,6 @@ const EventForm = () => {
     const [attachment, setAttachment] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
 
-
     //handleSubmit se encarga de crear un nuevo evento con los valores actuales de los campos del formulario
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -116,7 +115,7 @@ const EventForm = () => {
                             Submit
                         </button>
                     </form>
-                   
+
                 </div >
             </main>
 
