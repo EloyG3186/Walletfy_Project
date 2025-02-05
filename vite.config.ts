@@ -12,6 +12,9 @@ export default defineConfig({
       '@customTypes': resolve(__dirname, './src/types'),
       '@context': resolve(__dirname, './src/context'),
       '@models': resolve(__dirname, './src/models'),
+      '@api': resolve(__dirname, './src/api'),
+      '@utils': resolve(__dirname, './src/utils'),
+      '@constants': resolve(__dirname, './src/constants'),
     },
   },
 

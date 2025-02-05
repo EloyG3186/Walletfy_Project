@@ -15,7 +15,7 @@ const Body = () => {
                     <NumberInput
                         className=""
                         label="Dinero Inicial"
-                        value={inputValue}
+                        value={parseFloat(inputValue)}
                         onChange={() => { }}
                     />
                     <Button caption="Calcular" />

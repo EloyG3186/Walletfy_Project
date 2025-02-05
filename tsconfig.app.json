@@ -30,6 +30,9 @@
        "@pages/*": ["src/pages/*"],
        "@context/*": ["src/context/*"],
        "@models/*": ["src/models/*"],
+       "@api/*": ["src/api/*"],
+       "@utils/*": ["src/utils/*"],
+       "@constants/*": ["src/constants/*"],
          }
   },
   "include": ["src"]

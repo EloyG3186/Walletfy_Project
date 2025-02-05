@@ -1,126 +1,289 @@
-import { useState } from 'react';
-import { createEvent, Event, saveEventsToLocalStorage } from '@models/Event'; // MODELS
+import { $ } from '@utils/styles';
+import React from 'react';
+import moment from 'moment';
+import { Controller, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import {
+    EventByIdLoaderDataType,
+    EventCreateType,
+    EventCreateSchema
+} from '@customTypes/event';
+
+import DataRepo from '@api/datasource';
+import { QKeys } from '@constants/query';
+import { isLoadingMutation, isLoadingOrRefetchQuery } from '@utils/query';
+
 import Input from '@components/form/Input';
 import InputDate from '@components/form/InputDate';
 import NumberInput from '@components/form/NumberInput';
 import SelectInput from '@components/form/Select';
 import Attachment from '@components/form/Attachment';
 
+type Params = { id: string }
 
-//import Button from '@components/form/Button';
-
+const INITIAL_STATE: EventCreateType = {
+    name: '',
+    description: '',
+    date: moment().unix(),
+    amount: 0,
+    type: 'income',
+    attachment: '',
+}
 
 //EventForm maneja el formulario y lógica para crear nuevos eventos
 // USE STATE= para manejar el estado de los campos del formulario.
 const EventForm = () => {
-    const [name, setName] = useState<string>('');
-    const [description, setDescription] = useState<string>('');
-    const [amount, setAmount] = useState<number>(0);
-    const [type, setType] = useState<'income' | 'expense'>('income');
-    const [date, setDate] = useState<string>('');
-    const [attachment, setAttachment] = useState<string>('');
-    const [error, setError] = useState<string | null>(null);
 
-    //handleSubmit se encarga de crear un nuevo evento con los valores actuales de los campos del formulario
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        try {
-            const newEvent: Event = createEvent(name, amount, type, date, description, attachment);
-            //nuevo evento en localStorage
-            saveEventsToLocalStorage(newEvent);
-            // Reset form fields
-            setName('');
-            setDescription('');
-            setAmount(0);
-            setType('income');
-            setDate('');
-            setAttachment('');
-            setError(null);
-        } catch (error) {
-            setError((error as Error).message);
-            console.error('Error creating event:', error);
+    const { id } = useParams<Params>()
+    const navigate = useNavigate();
+    const inputRef = React.useRef<HTMLAnchorElement>(null)
+    const [mode] = React.useState(id ? 'edit' : 'create');
+
+    const formEvent = useForm<EventCreateType>({
+        defaultValues: INITIAL_STATE,
+        resolver: zodResolver(EventCreateSchema),
+    })
+
+    const eventQuery = useQuery<
+        EventByIdLoaderDataType,
+        Error,
+        EventByIdLoaderDataType,
+        [string, string | undefined]
+    >({
+        enabled: Boolean(id),
+        queryKey: [QKeys.GET_EVENT, id],
+        queryFn: async ({ queryKey }) => {
+            return await DataRepo.loadEventById(queryKey[1]!);
         }
-    };
+    })
+
+    const eventCreateMutation = useMutation<void, Error, EventCreateType>({
+        mutationFn: async (event) => {
+            return await DataRepo.saveEvent(event);
+        },
+        onSettled: (_, error) => {
+            if (error) {
+                alert('Error al guardar el evento');
+                return;
+            }
+            alert('Event guardado');
+            formEvent.reset(INITIAL_STATE);
+            navigate('/events/form');
+        }
+    })
+
+    const eventUpdateMutation = useMutation<void, Error, EventCreateType>({
+        mutationFn: async (event) => {
+            return await DataRepo.updateEvent(id!, event);
+        },
+        onSettled: (_, error) => {
+            if (error) {
+                alert('Error al actualizar el evento');
+                return;
+            }
+            alert('Evento actualizado');
+            formEvent.reset(INITIAL_STATE);
+            navigate('/events/form');
+        }
+    })
+
+    React.useEffect(() => {
+        if (mode === 'create' || !eventQuery.data?.event) {
+            return;
+        }
+        formEvent.reset(eventQuery.data.event)
+        // eslint-diabled next-line react-hooks/exhaustive-deps
+    }, [eventQuery.data?.event])
+
+    React.useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+        return () => {
+            console.log('Unmount');
+            formEvent.reset(INITIAL_STATE)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 
+    const isLoadingForm = isLoadingMutation(
+        eventCreateMutation,
+        eventUpdateMutation
+    );
 
-
+    const isLoadingQuery = isLoadingOrRefetchQuery(eventQuery);
 
     return (
-        <section className="cd-w-full">
+        <div>
 
-            <main className="cd-flex cd-transition-colors cd-duration-500  dark:cd-bg-zinc-900 cd-flex-col cd-items-center cd-w-full cd-pt-5 cd-pb-14 cd-justify-center">
-                <div className=" cd-px-10  cd-mt-[2rem] cd-flex cd-flex-col cd-transition-colors cd-duration-500 ">
-                    <form className='cd-flex cd-flex-col cd-text-lg  dark:cd-text-white' onSubmit={handleSubmit}>
+            {isLoadingQuery && (
+                <p className='cd-text-2xl cd-font-bold cd-text-center'>Loading Form</p>
+            )}
 
 
-                        <h1 className='cd-pb-8'>Create Event</h1>
-                        {error && <p className="cd-text-red-500">{error}</p>}
-                        <div>
-                            <Input
-                                className='cd-py-1'
-                                label="Name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+            {!isLoadingQuery && (
+                <section className="cd-w-full">
+                    <main className={$("cd-flex cd-transition-colors ",
+                        "cd-duration-500  dark:cd-bg-zinc-900 ",
+                        "cd-flex-row cd-items-center cd-w-full ",
+                        "cd-pt-5 cd-pb-14 cd-justify-center")}>
+                        <div className={$(" cd-px-10  cd-mt-[2rem] ",
+                            "cd-flex cd-flex-row cd-transition-colors ",
+                            "cd-duration-500 ")}
+                            onClick={() => navigate('/')}
+                        >
+                            <form
+                                className='cd-flex cd-flex-col cd-text-lg cd-gap-4 dark:cd-text-white'
+                                onSubmit={formEvent.handleSubmit((data) => {
+                                    console.log(mode)
+                                    if (mode === 'edit' && id) {
+                                        eventUpdateMutation.mutate(data);
+                                    } else {
+                                        eventCreateMutation.mutate(data);
+                                    }
+                                }
+                                )}
+                            >
+                                <div className='cd-flex cd-flex-row cd-justify-center cd-pl-11'>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        className="size-6"
+                                        width="32px"
+                                        height="32px"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                                        />
+                                    </svg>
 
-                            />
-                        </div>
+                                    <h1 className='cd-text-4xl cd-font-bold'>Event Form</h1>
+                                </div>
 
-                        <div className='cd-py-1'>
-                            <Input
-                                label="Description"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
+                                <h1 className='cd-pb-8'>
+                                    {mode === 'edit' ? 'Edit' : 'Create'} Event
+                                </h1>
 
-                            />
-                        </div>
+                                {//error && <p className="cd-text-red-500">error</p>
+                                }
 
-                        <div className='cd-py-1'>
-                            <InputDate
-                                label="Date"
-                                value={date}
-                                onChange={(e) => setDate(e.target.value)}
 
-                            />
-                        </div>
+                                <Controller
+                                    name='name'
+                                    control={formEvent.control}
+                                    render={({ field }) => (
 
-                        <div className='cd-py-1 '>
-                            <NumberInput
-                                label="Amount"
-                                value={amount}
-                                onChange={(e) => setAmount(parseFloat(e.target.value))}
+                                        <Input
+                                            className='cd-py-1'
+                                            label="Name"
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                            error={formEvent.formState.errors.name?.message}
+                                        />
+                                    )}
+                                />
 
-                            />
-                        </div>
 
-                        <div className='cd-py-1 '>
-                            <SelectInput
-                                label="Type"
-                                value={type}
-                                options={['income', 'expense']}
-                                onChange={(e) => setType(e.target.value as 'income' | 'expense')}
 
-                            />
-                        </div>
+                                <Controller
+                                    name='description'
+                                    control={formEvent.control}
+                                    render={({ field }) => (
+                                        <Input
+                                            label="Description"
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                            error={formEvent.formState.errors.name?.message}
 
-                        <div className='cd-py-1'>
-                            <Attachment
-                                label="Attachment"
-                                value={attachment}
-                                onChange={(e) => setAttachment(e.target.value)}
-                            />
-                        </div>
+                                        />
+                                    )}
+                                />
 
-                        <button className='cd-self-center cd-mt-4 cd-font-medium cd-text-lg  cd-font-sans cd-px-80 cd-py-4 cd-bg-violet-500 cd-text-white cd-rounded-md hover:cd-bg-violet-600'>
-                            Submit
-                        </button>
-                    </form>
 
-                </div >
-            </main>
 
-        </section>
+                                <Controller
+                                    name='date'
+                                    control={formEvent.control}
+                                    render={({ field }) => (
+                                        <InputDate
+                                            label="Date"
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                            error={formEvent.formState.errors.name?.message}
+                                        />
 
+                                    )}
+                                />
+
+
+
+                                <Controller
+                                    name='amount'
+                                    control={formEvent.control}
+                                    render={({ field }) => (
+                                        <NumberInput
+                                            label="Amount"
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                            error={formEvent.formState.errors.name?.message}
+                                        />
+                                    )}
+                                />
+
+
+
+                                <Controller
+                                    name='type'
+                                    control={formEvent.control}
+                                    render={({ field }) => (
+                                        <SelectInput
+                                            label="Type"
+                                            value={field.value}
+                                            options={['income', 'expense']}
+                                            onChange={field.onChange}
+                                        />
+                                    )}
+                                />
+
+
+                                <Controller
+                                    name='attachment'
+                                    control={formEvent.control}
+                                    render={({ field }) => (
+                                        <Attachment
+                                            label="Attachment"
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                        />
+                                    )}
+                                />
+
+                                <button className={$('cd-self-center cd-mt-4 ',
+                                    'cd-font-medium cd-text-lg ',
+                                    'cd-font-sans cd-px-80 cd-py-4 ',
+                                    'cd-bg-violet-500 cd-text-white ',
+                                    'cd-rounded-md hover:cd-bg-violet-600')}
+                                    type='submit'
+                                >
+                                    {isLoadingForm ? 'Saving...' : mode === 'edit' ? 'Edit' : ' Create'}
+
+                                </button>
+
+                            </form>
+                        </div >
+                    </main>
+                </section>
+            )}
+        </div>
     );
 };
 
