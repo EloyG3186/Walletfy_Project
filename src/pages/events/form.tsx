@@ -63,7 +63,7 @@ const EventForm = () => {
     const eventCreateMutation = useMutation<void, Error, EventCreateType>({
         mutationFn: async (event) => {
             console.log("eventCreateMutation", event);
-            return await DataRepo.saveEvent(event);
+          //  return await DataRepo.saveEvent(event);
             
         }, 
 
@@ -142,15 +142,17 @@ const EventForm = () => {
                         >
                             <form
                                 className='cd-flex cd-flex-col cd-text-lg cd-gap-4 dark:cd-text-white'
-                                onSubmit={(data) => {
-                                    console.log(mode)
-                                    
+                                onSubmit={ formEvent.handleSubmit((data) => {
+                                
+                                    console.log(mode,data)
+                                
+
                                     if (mode === 'edit' && id) {
                                         eventUpdateMutation.mutate(data);
                                     } else {
                                         eventCreateMutation.mutate(data);
                                     }
-                                }
+                                } ) 
                               }
                             >
                                 <div className='cd-flex cd-flex-row cd-justify-center cd-pl-11'
