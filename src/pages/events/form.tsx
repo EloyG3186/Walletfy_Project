@@ -66,6 +66,8 @@ const EventForm = () => {
             return await DataRepo.saveEvent(event);
             
         }, 
+
+
         onSettled: (_, error) => {
             if (error) {
                 alert('Error al guardar el evento');
@@ -142,6 +144,7 @@ const EventForm = () => {
                                 className='cd-flex cd-flex-col cd-text-lg cd-gap-4 dark:cd-text-white'
                                 onSubmit={(data) => {
                                     console.log(mode)
+                                    
                                     if (mode === 'edit' && id) {
                                         eventUpdateMutation.mutate(data);
                                     } else {
