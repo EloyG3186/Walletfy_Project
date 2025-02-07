@@ -65,7 +65,7 @@ const EventForm = () => {
             console.log("eventCreateMutation", event);
             return await DataRepo.saveEvent(event);
             
-        },
+        }, 
         onSettled: (_, error) => {
             if (error) {
                 alert('Error al guardar el evento');
@@ -140,7 +140,7 @@ const EventForm = () => {
                         >
                             <form
                                 className='cd-flex cd-flex-col cd-text-lg cd-gap-4 dark:cd-text-white'
-                                onSubmit={formEvent.handleSubmit((data) => {
+                                onSubmit={(data) => {
                                     console.log(mode)
                                     if (mode === 'edit' && id) {
                                         eventUpdateMutation.mutate(data);
@@ -148,7 +148,7 @@ const EventForm = () => {
                                         eventCreateMutation.mutate(data);
                                     }
                                 }
-                                )}
+                              }
                             >
                                 <div className='cd-flex cd-flex-row cd-justify-center cd-pl-11'
                                 >
