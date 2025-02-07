@@ -62,7 +62,9 @@ const EventForm = () => {
 
     const eventCreateMutation = useMutation<void, Error, EventCreateType>({
         mutationFn: async (event) => {
+            console.log("eventCreateMutation", event);
             return await DataRepo.saveEvent(event);
+            
         },
         onSettled: (_, error) => {
             if (error) {
@@ -134,7 +136,7 @@ const EventForm = () => {
                         <div className={$(" cd-px-10  cd-mt-[2rem] ",
                             "cd-flex cd-flex-row cd-transition-colors ",
                             "cd-duration-500 ")}
-                            onClick={() => navigate('/')}
+
                         >
                             <form
                                 className='cd-flex cd-flex-col cd-text-lg cd-gap-4 dark:cd-text-white'
@@ -148,23 +150,28 @@ const EventForm = () => {
                                 }
                                 )}
                             >
-                                <div className='cd-flex cd-flex-row cd-justify-center cd-pl-11'>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth="1.5"
-                                        stroke="currentColor"
-                                        className="size-6"
-                                        width="32px"
-                                        height="32px"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-                                        />
-                                    </svg>
+                                <div className='cd-flex cd-flex-row cd-justify-center cd-pl-11'
+                                >
+                                    <button onClick={() => navigate('/')}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="1.5"
+                                            stroke="currentColor"
+                                            className="size-6"
+                                            width="32px"
+                                            height="32px"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                                            />
+                                        </svg>
+
+                                    </button>
+
 
                                     <h1 className='cd-text-4xl cd-font-bold'>Event Form</h1>
                                 </div>
