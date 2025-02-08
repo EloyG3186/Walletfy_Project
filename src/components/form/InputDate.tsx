@@ -12,6 +12,7 @@ type DateProps = {
 const InputDate = (props: DateProps ) => { 
     const {label, value, error, onChange, className} = props;
 
+
     return (
         <div className={`input-date-container ${className}`}>
             <label className="input-date-label cd-pt-2 cd-block cd-text-lg cd-font-sans cd-font-medium ">

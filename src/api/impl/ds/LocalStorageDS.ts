@@ -26,12 +26,6 @@ class LocalStorageDS extends DataDS {
             await sleep();
             const events = this.getEvents();
 
-            if (type !== '') {
-                return {
-                    events: events.filter((event) => event.type === type)
-                }
-            }
-
             return { events }
 
         } catch (error) {

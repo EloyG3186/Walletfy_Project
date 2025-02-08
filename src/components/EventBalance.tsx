@@ -24,7 +24,13 @@ const EventBalance = (props: EventBalanceProps) => {
                 "cd-flex cd-flex-col cd-gap-y-[1rem] cd-shadow-lg cd-rounded-md ",
                 "cd-border cd-border-gray-200")}>
                 <div className="cd-border cd-bottom-2">
-                    <h1>{MONTHS[moment(date).month()] + " " + moment(date).year() }</h1>
+                    <h1>{`Id: ${id}`}</h1>
+                    <h1>{`Name: ${name}`}</h1>
+                    <h1>{`Description: ${description}`}</h1>
+                    <h1>{`Date: ${moment.unix(date).format('DD/MM/YYYY')}`}</h1>
+                    <h1>{`Amount: ${amount}`}</h1>
+                    <h1>{`type: ${type}`}</h1>
+                    <h1>{`attachment: ${attachment}`}</h1>
                 </div>
             </div>
 

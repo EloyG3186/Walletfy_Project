@@ -214,7 +214,7 @@ const EventForm = () => {
                                             label="Description"
                                             value={value}
                                             onChange={onChange}
-                                            error={formState.errors?.name?.message}
+                                            error={formState.errors?.description?.message}
 
                                         />
                                     )}
@@ -230,7 +230,7 @@ const EventForm = () => {
                                             label="Date"
                                             value={value}
                                             onChange={onChange}
-                                            error={formState.errors?.name?.message}
+                                            error={formState.errors?.date?.message}
                                         />
 
                                     )}
