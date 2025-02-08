@@ -6,7 +6,7 @@ type SelectProps = {
     options: string[];
     error?: string;
     className?: string;
-    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    onChange: (value: string) => void;
 };
   
 const SelectInput: React.FC<SelectProps> = ({ label, value, options, error, onChange, className }) => {
@@ -18,7 +18,7 @@ const SelectInput: React.FC<SelectProps> = ({ label, value, options, error, onCh
         </label>
         <select
           value={value}
-          onChange={onChange}
+          onChange={(e) => onChange(e.target.value)}
           className="cd-mt-1 cd-text-gray-900 dark:cd-text-gray-200 cd-font-sans  cd-block cd-w-full cd-text-lg cd-px-2 cd-py-3 cd-border cd-border-gray-300 dark:cd-border-gray-500 dark:cd-bg-zinc-700 cd-rounded-md cd-shadow-sm focus:cd-outline-none focus:cd-ring-indigo-500 focus:cd-border-indigo-500 lg:cd-text-lg"
         >
           {options.map((option) => (

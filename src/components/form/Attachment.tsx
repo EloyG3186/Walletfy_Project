@@ -17,7 +17,7 @@ const Attachment: React.FC<AttachmentProps> = ({ label, onChange, className }) =
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImage(reader.result);
-                 // Generar un UUID para el archivo
+                // Generar un UUID para el archivo
                 onChange({
                     ...e,
                     target: {
@@ -41,14 +41,13 @@ const Attachment: React.FC<AttachmentProps> = ({ label, onChange, className }) =
                 onChange={handleFileChange}
                 className="attachment-input cd-text-gray-900 dark:cd-text-gray-200 cd-font-sans cd-mt-1 cd-block cd-w-full cd-px-3 cd-py-2 dark:cd-bg-zinc-700 cd-border cd-border-gray-300 dark:cd-border-gray-500 cd-rounded-md cd-shadow-sm focus:cd-outline-none focus:cd-ring-indigo"
             />
-            {/*image && <img src={image as string} alt="Attachment preview" className="cd-mt-2 cd-w-full cd-h-auto" />*/
-           /* image && (
-                <div className="attachment-preview cd-mt-2">
-                    {/*<img src={image as string} alt="Preview" className="attachment-image cd-w-full cd-h-auto cd-rounded-md" />}
+
+            {image && (
+                <div className="image-preview">
+                    <img src={image as string} alt="Preview" className="cd-mt-2 cd-max-w-full cd-h-auto" />
                 </div>
-            )*/
-            
-            }
+            )}
+
         </div>
     );
 };

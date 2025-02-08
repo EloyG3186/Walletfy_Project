@@ -5,7 +5,7 @@ type NumberInputProps = {
     value: number;
     error?: string;
     className?: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (value: string) => void;
 }
 
 const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
@@ -13,9 +13,6 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         const { label, value, onChange, error, className } = props;
 
         //const [value, setValue] = useState<string>('');
-
-
-
         return (
             <div className={className}>
                 <label className="cd-block cd-text-lg cd-pt-2 cd-font-sans cd-font-medium cd-text-gray-800 dark:cd-text-gray-100">
@@ -25,7 +22,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                     ref={ref}
                     type="number"
                     value={value}
-                    onChange={onChange}
+                    onChange={(e) => onChange(e.target.value)}
                     className="cd-mt-1 cd-px-3 cd-font-sans cd-block cd-w-full cd-text-gray-900 dark:cd-text-gray-200 cd-py-2 dark:cd-bg-zinc-700 cd-border cd-border-gray-300 dark:cd-border-gray-500 cd-rounded-md cd-shadow-sm focus:cd-outline-none fous:cd-ring-indigo"
                 />
                 {error && <p className="cd-mt-2 cd-text-sm cd-text-red-600">{error}</p>}
