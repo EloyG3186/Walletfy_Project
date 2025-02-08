@@ -42,7 +42,7 @@ const EventForm = () => {
     const inputRef = React.useRef<HTMLAnchorElement>(null)
     const [mode] = React.useState(id ? 'edit' : 'create');
 
-    const formEvent = useForm<EventCreateType>({
+    const { handleSubmit, control, formState, reset } = useForm<EventCreateType>({
         defaultValues: INITIAL_STATE,
         resolver: zodResolver(EventCreateSchema),
     })
@@ -63,18 +63,17 @@ const EventForm = () => {
     const eventCreateMutation = useMutation<void, Error, EventCreateType>({
         mutationFn: async (event) => {
             console.log("eventCreateMutation", event);
-          //  return await DataRepo.saveEvent(event);
-            
-        }, 
+            alert('Event guardado');
 
+            return await DataRepo.saveEvent(event);
 
+        },
         onSettled: (_, error) => {
             if (error) {
                 alert('Error al guardar el evento');
                 return;
             }
-            alert('Event guardado');
-            formEvent.reset(INITIAL_STATE);
+            reset(INITIAL_STATE);
             navigate('/events/form');
         }
     })
@@ -89,7 +88,7 @@ const EventForm = () => {
                 return;
             }
             alert('Evento actualizado');
-            formEvent.reset(INITIAL_STATE);
+            reset(INITIAL_STATE);
             navigate('/events/form');
         }
     })
@@ -98,7 +97,7 @@ const EventForm = () => {
         if (mode === 'create' || !eventQuery.data?.event) {
             return;
         }
-        formEvent.reset(eventQuery.data.event)
+        reset(eventQuery.data.event)
         // eslint-diabled next-line react-hooks/exhaustive-deps
     }, [eventQuery.data?.event])
 
@@ -108,7 +107,7 @@ const EventForm = () => {
         }
         return () => {
             console.log('Unmount');
-            formEvent.reset(INITIAL_STATE)
+            reset(INITIAL_STATE)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -138,40 +137,46 @@ const EventForm = () => {
                         <div className={$(" cd-px-10  cd-mt-[2rem] ",
                             "cd-flex cd-flex-row cd-transition-colors ",
                             "cd-duration-500 ")}
-                            onClick={() => navigate('/')}
+
                         >
                             <form
                                 className='cd-flex cd-flex-col cd-text-lg cd-gap-4 dark:cd-text-white'
-                                onSubmit={ formEvent.handleSubmit((data) => {
-                                
-                                    console.log(mode,data)
-                                
+                                onSubmit={handleSubmit((data) => {
+
+                                    console.log(mode, data)
+
 
                                     if (mode === 'edit' && id) {
                                         eventUpdateMutation.mutate(data);
                                     } else {
                                         eventCreateMutation.mutate(data);
                                     }
-                                } ) 
-                              }
+                                })
+                                }
                             >
                                 <div className='cd-flex cd-flex-row cd-justify-center cd-pl-11'>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth="1.5"
-                                        stroke="currentColor"
-                                        className="size-6"
-                                        width="32px"
-                                        height="32px"
+                                    <button
+                                        type='button'
+                                        onClick={() => navigate('/')}
                                     >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-                                        />
-                                    </svg>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="1.5"
+                                            stroke="currentColor"
+                                            className="size-6"
+                                            width="32px"
+                                            height="32px"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                                            />
+                                        </svg>
+                                    </button>
+
 
                                     <h1 className='cd-text-4xl cd-font-bold'>Event Form</h1>
                                 </div>
@@ -186,15 +191,15 @@ const EventForm = () => {
 
                                 <Controller
                                     name='name'
-                                    control={formEvent.control}
-                                    render={({ field }) => (
+                                    control={control}
+                                    render={({ field: {onChange, value} }) => (
 
                                         <Input
                                             className='cd-py-1'
                                             label="Name"
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                            error={formEvent.formState.errors.name?.message}
+                                            value={value}
+                                            onChange={onChange}
+                                            error={formState.errors?.name?.message}
                                         />
                                     )}
                                 />
@@ -203,13 +208,13 @@ const EventForm = () => {
 
                                 <Controller
                                     name='description'
-                                    control={formEvent.control}
-                                    render={({ field }) => (
+                                    control={control}
+                                    render={({ field: {onChange, value} }) => (
                                         <Input
                                             label="Description"
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                            error={formEvent.formState.errors.name?.message}
+                                            value={value}
+                                            onChange={onChange}
+                                            error={formState.errors?.name?.message}
 
                                         />
                                     )}
@@ -219,13 +224,13 @@ const EventForm = () => {
 
                                 <Controller
                                     name='date'
-                                    control={formEvent.control}
-                                    render={({ field }) => (
+                                    control={control}
+                                    render={({ field: {onChange, value} }) => (
                                         <InputDate
                                             label="Date"
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                            error={formEvent.formState.errors.name?.message}
+                                            value={value}
+                                            onChange={onChange}
+                                            error={formState.errors?.name?.message}
                                         />
 
                                     )}
@@ -235,13 +240,13 @@ const EventForm = () => {
 
                                 <Controller
                                     name='amount'
-                                    control={formEvent.control}
-                                    render={({ field }) => (
+                                    control={control}
+                                    render={({ field: { value, onChange} }) => (
                                         <NumberInput
                                             label="Amount"
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                            error={formEvent.formState.errors.name?.message}
+                                            value={value}
+                                            onChange={onChange}
+                                            error={formState.errors?.amount?.message}
                                         />
                                     )}
                                 />
@@ -250,7 +255,7 @@ const EventForm = () => {
 
                                 <Controller
                                     name='type'
-                                    control={formEvent.control}
+                                    control={control}
                                     render={({ field }) => (
                                         <SelectInput
                                             label="Type"
@@ -264,7 +269,7 @@ const EventForm = () => {
 
                                 <Controller
                                     name='attachment'
-                                    control={formEvent.control}
+                                    control={control}
                                     render={({ field }) => (
                                         <Attachment
                                             label="Attachment"
