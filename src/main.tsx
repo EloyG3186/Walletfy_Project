@@ -8,7 +8,7 @@ import './index.css'
 import Home from '@pages/home/index.tsx';
 import Layout from '@components/Layout.tsx';
 import EventForm from '@pages/events/form.tsx';
-import MyContext, {INITIAL_STATE, MyContextType} from '@context/index';
+import MyContext, { INITIAL_STATE, MyContextType } from '@context/index';
 
 
 const queryClient = new QueryClient({
@@ -43,13 +43,13 @@ function App() {
   const [state, setState] = React.useState<MyContextType>(INITIAL_STATE);
 
   React.useEffect(() => {
-    
+
     const schema = localStorage.getItem('schema') as 'light' | 'dark' | null;
 
     if (schema) {
       setSchema(schema);
     }
-  }, []);  
+  }, []);
 
   return (
     <MyContext.Provider
@@ -83,8 +83,8 @@ function App() {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <App/>
-      </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
   </StrictMode>,
 )

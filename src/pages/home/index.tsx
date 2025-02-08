@@ -1,4 +1,4 @@
-import Body from "./body";
+//import Body from "./body";
 import React, { useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
@@ -14,10 +14,14 @@ import Input from "@components/form/Input";
 
 import NumberInput from '@components/form/NumberInput';
 import Button from '@components/form/Button';
+
+import Header from './header';
+import { Console } from 'console';
+
 const [inputValue, setInputValue] = useState<string>('');
 
 const Home = () => {
-
+/*
     const { state } = useParams<{ state: string }>();
 
     const eventQuery = useQuery<
@@ -46,13 +50,18 @@ const Home = () => {
 
     const isLoading = isLoadingOrRefetchQuery(eventQuery);
 
+    /*
     const { currentPage, pageData, totalPages, goToPage } =
-        usePagination<EventType>({ data: filterEventCallBack() })
+        usePagination<EventType>({ data: filterEventCallBack() })*/
 
     return (
+        <div>
 
-        <React.Fragment>
-            
+            <Header/>
+
+            {/*         <React.Fragment>*/}
+
+            {/* 
             {isLoading && (
                 <p className="text-2xl font-bold cd-text-center">
                     Cargando Flujos
@@ -108,25 +117,32 @@ const Home = () => {
                             />
                         )}
 
+                        {/*
                         <Body />
+                         
                     </div>
 
                 </div>
             )}
-        </React.Fragment>
-    );
 
-    function filterEvents(){
-        if(!data?.events.length || !debouncedQuery){
+            {/* 
+        </React.Fragment>
+        
+        */}
+        </div>
+    );
+/*
+    function filterEvents() {
+        if (!data?.events.length || !debouncedQuery) {
             return data?.events;
         }
-    
+
         return data.events.filter((event) =>
             event.name.toLowerCase().includes(debouncedQuery.toLowerCase())
         )
 
     }
-
+*/
 };
 
 export default Home;
