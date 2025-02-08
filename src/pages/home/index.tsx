@@ -79,7 +79,7 @@ const Home = () => {
                 )}
 
                 {!isLoading && data && (
-                    <div className="cd-m-12">
+                    <div className="cd-m-12 ">
                         <div className="cd-flex cd-items-center cd-flex-col cd-gap-y-[2rem] cd-font-sans ">
                             <div className='cd-flex cd-items-end cd-justify-between cd-w-full' >
                                 <div className='cd-flex cd-flex-row cd-items-end '>
