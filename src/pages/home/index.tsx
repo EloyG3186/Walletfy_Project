@@ -1,4 +1,4 @@
-import Body from "./body";
+//import Body from "./body";
 import React, { useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
@@ -15,8 +15,8 @@ import Input from "@components/form/Input";
 import NumberInput from '@components/form/NumberInput';
 import Button from '@components/form/Button';
 
-import Header from './header';
-import { Console } from 'console';
+//import Header from './header';
+//import { Console } from 'console';
 
 
 const Home = () => {
@@ -66,11 +66,14 @@ const Home = () => {
     const { currentPage, pageData, totalPages, goToPage } =
         usePagination<EventType>({ data: filterEventCallBack() })
 
+        console.log('Data: ', data)
+
     return (
         <div>
 
             <React.Fragment>
 
+            
 
                 {isLoading && (
                     <p className="text-2xl font-bold cd-text-center">
@@ -116,20 +119,25 @@ const Home = () => {
                             )}
 
                             {!debouncing && (
+                                
                                 <Pagination<EventType>
                                     currentPage={currentPage}
                                     data={pageData}
                                     onChange={goToPage}
                                     totalPages={totalPages}
                                     renderItem={(event, index) => (
+                                        
                                         <EventBalance key={event.id} data={event} index={index} />
                                     )}
                                 />
-                            )}
+                            )
+                            
+                            }
 
 
+                            {/* 
                             <Body />
-
+                                */}
                         </div>
 
                     </div>
