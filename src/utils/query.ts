@@ -14,4 +14,4 @@ export const isRefethingQuery = (...results: UseQueryResult[]) => {
 
 export const isLoadingMutation = (...results: any[]) => {
     return results.some((result) => result.isPending && result.isIdle)
-}
+}  
