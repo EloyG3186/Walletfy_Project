@@ -164,94 +164,88 @@ const Home = () => {
 
                         {!isLoading && data?.events && data.events.length > 0 && (
 
-                          
+                            <div className='cd-flex cd-flex-col cd-gap-4 dark:cd-text-white cd-pt-8'>
+                                <p className='cd-mb-2 cd-self-start cd-font-sans cd-font-medium cd-text-xl '>Your Events</p>
+                                <div className='cd-flex cd-flex-row cd-gap-4'>
+                                    {eventsFlow.flows.map(flow => {
+                                        const month = parseInt(flow.id.substring(5, 7), 10);
+                                        return (
+                                            <div key={flow.id}
+                                                className='cd-flex cd-rounded-xl cd-px-8 cd-py-2 cd-flex-col cd-bg-gray-100 dark:cd-bg-zinc-700 dark:cd-border dark:cd-border-gray-600 cd-shadow-2xl'>
+                                               
+                                                <section className="cd-flex cd-justify-between cd-items-center cd-px-[4rem] cd-py-[0.5rem]">
+                                                   
+                                                    <h2 className='cd-justify-center cd-text-center cd-text-xl cd-py-2 cd-text-zinc-800 cd-font-sans dark:cd-text-gray-300 cd-font-semibold'>
+                                                        {MONTHS[month - 1]} {flow.id.slice(0, 4)}</h2>
 
+                                                </section>
 
-                                <div className='cd-flex cd-flex-col cd-gap-4 dark:cd-text-white cd-pt-8'>
-                                    <p className='cd-mb-2 cd-self-start cd-font-sans cd-font-medium cd-text-xl '>Your Events</p>
+                                                <div className="cd-border-b cd-border-gray-200  dark:cd-border-zinc-500"></div>
 
-                                    <div className='cd-flex cd-flex-row cd-gap-4'>
-                                        {eventsFlow.flows.map(flow => {
-                                            const month = parseInt(flow.id.substring(5, 7), 10);
-                                            return (
-                                                <div
-                                                    key={flow.id}
-                                                    className='cd-flex cd-rounded-xl cd-px-8 cd-py-2 cd-flex-col cd-bg-gray-100 dark:cd-bg-zinc-700 dark:cd-border dark:cd-border-gray-600 cd-shadow-2xl '
+                                                <section>
+                                                    {flow.events.map(event => (
+                                                        <div
+                                                            key={event.id}
+                                                            className='cd-p-2 cd-rounded hover:cd-bg-slate-400 cd-transition-colors '
+                                                            onClick={() => editEvent(event.id)}>
 
-                                                >
-                                                    <section className="cd-flex cd-justify-between cd-items-center cd-px-[4rem] cd-py-[0.5rem]">
-                                                        <h2 className='cd-justify-center cd-text-center cd-text-xl cd-py-2 cd-text-zinc-800 cd-font-sans dark:cd-text-gray-300 cd-font-semibold'>
-                                                            {MONTHS[month - 1]} {flow.id.slice(0, 4)}
-                                                        </h2>
-                                                    </section>
-
-                                                    <div className="cd-border-b cd-border-gray-200  dark:cd-border-zinc-500"></div>
-
-                                                    <section>
-                                                        {flow.events.map(event => (
-                                                            <div
-                                                                key={event.id}
-                                                                className='cd-p-2 cd-rounded hover:cd-bg-slate-400 cd-transition-colors '
-                                                                onClick={() => editEvent(event.id)}
-                                                            >
-                                                                <div className='cd-flex cd-justify-between cd-items-center'>
-                                                                    <div className="cd-flex cd-flex-col cd-font-sans cd-text-gray-300 cd-text-lg">
-                                                                        <span className=" cd-text-gray-700 dark:cd-text-gray-200 ">{event.name}</span>
-                                                                        <span className='cd-pb-4 cd-text-gray-700 dark:cd-text-gray-200 '>{moment.unix(event.date).format('YYYY-MM-DD')}</span>
-                                                                    </div>
-                                                                    <div className='cd-text-right cd-flex cd-items-center'>
-                                                                        <p className={`${event.type === 'income' ? 'cd-text-green-600' : 'cd-text-red-300'} cd-text-lg cd-text-right`}>${event.amount.toFixed(2)}</p>
-                                                                    </div>
-
+                                                            <div className='cd-flex cd-justify-between cd-items-center'>
+                                                                <div className="cd-flex cd-flex-col cd-font-sans cd-text-gray-300 cd-text-lg">
+                                                                    <span className=" cd-text-gray-700 dark:cd-text-gray-200 ">{event.name}</span>
+                                                                    <span className='cd-pb-4 cd-text-gray-700 dark:cd-text-gray-200 '>{moment.unix(event.date).format('YYYY-MM-DD')}</span>
                                                                 </div>
-                                                                <div className="cd-border-b cd-border-gray-200 cd-w-full cd-h-[1px] cd-mb-[0.5rem] dark:cd-border-zinc-500"></div>
+                                                                <div className='cd-text-right cd-flex cd-items-center'>
+                                                                    <p className={`${event.type === 'income' ? 'cd-text-green-600' : 'cd-text-red-300'} cd-text-lg cd-text-right`}>${event.amount.toFixed(2)}</p>
+                                                                </div>
 
                                                             </div>
+                                                            <div className="cd-border-b cd-border-gray-200 cd-w-full cd-h-[1px] cd-mb-[0.5rem] dark:cd-border-zinc-500"></div>
 
-                                                        ))}
-                                                    </section>
-
-
-                                                    <footer className='cd-flex cd-flex-col cd-gap-y-[0.1rem] cd-pb-2'>
-
-                                                        <div className='cd-px-[1rem] cd-pb-[1rem]'>
-
-
-                                                            <div className='cd-flex cd-text-lg cd-flex-row cd-justify-between'>
-                                                                <strong>Income:  </strong>
-                                                                <p>
-                                                                    ${flow.income.toFixed(2)}
-                                                                </p>
-                                                            </div>
-
-                                                            <div className='cd-flex cd-text-lg cd-flex-row cd-justify-between'>
-                                                                <strong>Expenses:  </strong>
-                                                                <p>
-                                                                    ${flow.expense.toFixed(2)}
-                                                                </p>
-                                                            </div>
-
-                                                            <div className='cd-flex cd-text-lg cd-flex-row cd-justify-between'>
-                                                                <strong>Monthly:  </strong>
-                                                                <p >
-                                                                    ${flow.monthly.toFixed(2)}
-                                                                </p>
-                                                            </div>
-
-                                                            <div className='cd-flex cd-text-lg cd-flex-row cd-justify-between'>
-                                                                <strong>Global:  </strong>
-                                                                <p >
-                                                                    ${flow.global.toFixed(2)}
-                                                                </p>
-                                                            </div>
                                                         </div>
-                                                    </footer>
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
+
+                                                    ))}
+                                                </section>
+
+
+                                                <footer className='cd-flex cd-flex-col cd-gap-y-[0.1rem] cd-pb-2'>
+
+                                                    <div className='cd-px-[1rem] cd-pb-[1rem]'>
+
+                                                        <div className='cd-flex cd-text-lg cd-flex-row cd-justify-between'>
+                                                            <strong>Income:  </strong>
+                                                            <p>
+                                                                ${flow.income.toFixed(2)}
+                                                            </p>
+                                                        </div>
+
+                                                        <div className='cd-flex cd-text-lg cd-flex-row cd-justify-between'>
+                                                            <strong>Expenses:  </strong>
+                                                            <p>
+                                                                ${flow.expense.toFixed(2)}
+                                                            </p>
+                                                        </div>
+
+                                                        <div className='cd-flex cd-text-lg cd-flex-row cd-justify-between'>
+                                                            <strong>Monthly:  </strong>
+                                                            <p >
+                                                                ${flow.monthly.toFixed(2)}
+                                                            </p>
+                                                        </div>
+
+                                                        <div className='cd-flex cd-text-lg cd-flex-row cd-justify-between'>
+                                                            <strong>Global:  </strong>
+                                                            <p >
+                                                                ${flow.global.toFixed(2)}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </footer>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
-        
+                            </div>
+
                         )}
 
 
