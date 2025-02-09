@@ -5,7 +5,7 @@ type NumberInputProps = {
     value: number;
     error?: string;
     className?: string;
-    onChange: (value: string) => void;
+    onChange: (value: number) => void;
 }
 
 const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(

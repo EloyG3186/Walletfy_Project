@@ -11,15 +11,27 @@ export const EventSchema = z.object({
 });
 
 export type EventType = z.infer<typeof EventSchema>;
- //Loaders
-export const EventLoaderDataSchema = z.object({events: z.array(EventSchema),})
+//Loaders
+export const EventLoaderDataSchema = z.object({ events: z.array(EventSchema), })
 export type EventLoaderDataType = z.infer<typeof EventLoaderDataSchema>
 
-export const EventByIdLoaderDataSchema = z.object({event: EventSchema.optional(),})
+export const EventByIdLoaderDataSchema = z.object({ event: EventSchema.optional(), })
 export type EventByIdLoaderDataType = z.infer<typeof EventByIdLoaderDataSchema>
 
 //From
-export const EventCreateSchema = EventSchema.omit({id:true})
+export const EventCreateSchema = EventSchema.omit({ id: true })
 export type EventCreateType = z.infer<typeof EventCreateSchema>
 
-export const MONTHS = ["Enero","Febrero", "Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
+export const MONTHS = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+
+export interface EventFlow {
+    initialMoney: number,
+    flows: {
+        id: string;
+        events: EventType[];
+        income: number;
+        expense: number;
+        monthly: number;
+        global: number;
+    }[]
+}

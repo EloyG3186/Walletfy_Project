@@ -74,7 +74,7 @@ const EventForm = () => {
                 return;
             }
             reset(INITIAL_STATE);
-            navigate('/events/form');
+            navigate('/');
         }
     })
 
@@ -89,7 +89,7 @@ const EventForm = () => {
             }
             alert('Evento actualizado');
             reset(INITIAL_STATE);
-            navigate('/events/form');
+            navigate('/');
         }
     })
 
