@@ -24,14 +24,16 @@ export type EventCreateType = z.infer<typeof EventCreateSchema>
 
 export const MONTHS = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
-export interface EventFlow {
+export type FlowType ={
+    id: string,
+    events: EventType[],
+    income: number,
+    expense: number,
+    monthly: number,
+    global: number,
+}
+
+export type EventFlow = {
     initialMoney: number,
-    flows: {
-        id: string;
-        events: EventType[];
-        income: number;
-        expense: number;
-        monthly: number;
-        global: number;
-    }[]
+    flows: FlowType[],
 }
