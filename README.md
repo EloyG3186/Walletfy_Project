@@ -50,7 +50,7 @@ cd Walletfy_Project
 
 DESPLIEGUE:
 
-El despliegue de la aplicación se realizó utilizando Deploy, pero antes fue necesario realizar algunas modificaciones en el proyecto para garantizar su correcto funcionamiento en producción. A continuación, se detallan los pasos que fueron necesarios para el despliegue de el proyecto usando React con TypeScript. 
+El despliegue de la aplicación se realizó utilizando Git Deploy, pero antes fue necesario realizar algunas modificaciones en el proyecto para garantizar su correcto funcionamiento en producción. A continuación, se detallan los pasos que fueron necesarios para el despliegue de el proyecto usando React con TypeScript. 
 
 1. Preparación del Proyecto 
 Antes de desplegarlo, se realizaron algunos ajustes en el código y configuración en nuestro:  
