@@ -6,13 +6,15 @@ import MyContext from '@context/index';
 
 const Layout = () => {
 
-    const {schema, toggleSchema} = React.useContext(MyContext);
+    const { schema, toggleSchema } = React.useContext(MyContext);
 
     return (
-        <div className={`cd-min-h-screen cd-transition-colors cd-duration-500 ${schema === 'dark' ? 'dark cd-bg-zinc-800' : 'cd-bg-white'}`}>
-
+        <div className={` cd-min-h-screen cd-transition-colors cd-duration-500 ${schema === 'dark' ? 'dark cd-bg-zinc-800' : 'cd-bg-white'}`}>
             <header className={
-                "fixed-div cd-font-sans cd-header cd-flex " +
+                
+                "cd-fixed cd-top-0 cd-left-0 cd-right-0 cd-w-full " +
+                "cd-bg-zinc-800" +
+                "cd-font-sans cd-header cd-flex " +
                 "cd-items-center cd-justify-between " +
                 "cd-p-4 cd-shadow-md"
             } >
@@ -26,8 +28,9 @@ const Layout = () => {
                     {schema === 'light' ? '🌒' : '🌞'}
                 </button>
             </header >
-
-            <Outlet />
+            <div className="cd-pt-16">
+                <Outlet />
+                </div>
         </div>
     );
 };

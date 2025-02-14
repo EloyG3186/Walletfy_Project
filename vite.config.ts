@@ -19,13 +19,17 @@ export default defineConfig({
     },
   },
 
+  server:{
+    port: 5174,
+  },
+
   build: {
     rollupOptions: {
       output: {
         manualChunks: {
           react: ['react'],
           'react-dom': ['react-dom'],
-          //'user-profile': ['@components/UserProfile'],
+          'event-balance': ['@components/EventBalance'],
         },
       },
     },

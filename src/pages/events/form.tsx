@@ -131,7 +131,7 @@ const EventForm = () => {
             {!isLoadingQuery && (
                 <section className="cd-w-full">
                     <main className={$("cd-flex cd-transition-colors ",
-                        "cd-duration-500  dark:cd-bg-zinc-900 ",
+                        "cd-duration-500  ",
                         "cd-flex-row cd-items-center cd-w-full ",
                         "cd-pt-5 cd-pb-14 cd-justify-center")}>
                         <div className={$(" cd-px-10  cd-mt-[2rem] ",
@@ -144,7 +144,6 @@ const EventForm = () => {
                                 onSubmit={handleSubmit((data) => {
 
                                     console.log(mode, data)
-
 
                                     if (mode === 'edit' && id) {
                                         eventUpdateMutation.mutate(data);
@@ -185,14 +184,10 @@ const EventForm = () => {
                                     {mode === 'edit' ? 'Edit' : 'Create'} Event
                                 </h1>
 
-                                {//error && <p className="cd-text-red-500">error</p>
-                                }
-
-
                                 <Controller
                                     name='name'
                                     control={control}
-                                    render={({ field: {onChange, value} }) => (
+                                    render={({ field: { onChange, value } }) => (
 
                                         <Input
                                             className='cd-py-1'
@@ -209,7 +204,7 @@ const EventForm = () => {
                                 <Controller
                                     name='description'
                                     control={control}
-                                    render={({ field: {onChange, value} }) => (
+                                    render={({ field: { onChange, value } }) => (
                                         <Input
                                             label="Description"
                                             value={value}
@@ -225,7 +220,7 @@ const EventForm = () => {
                                 <Controller
                                     name='date'
                                     control={control}
-                                    render={({ field: {onChange, value} }) => (
+                                    render={({ field: { onChange, value } }) => (
                                         <InputDate
                                             label="Date"
                                             value={value}
@@ -241,7 +236,7 @@ const EventForm = () => {
                                 <Controller
                                     name='amount'
                                     control={control}
-                                    render={({ field: { value, onChange} }) => (
+                                    render={({ field: { value, onChange } }) => (
                                         <NumberInput
                                             label="Amount"
                                             value={value}
@@ -256,12 +251,12 @@ const EventForm = () => {
                                 <Controller
                                     name='type'
                                     control={control}
-                                    render={({ field }) => (
+                                    render={({ field: { value, onChange } }) => (
                                         <SelectInput
                                             label="Type"
-                                            value={field.value}
+                                            value={value}
                                             options={['income', 'expense']}
-                                            onChange={field.onChange}
+                                            onChange={onChange}
                                         />
                                     )}
                                 />
@@ -270,11 +265,11 @@ const EventForm = () => {
                                 <Controller
                                     name='attachment'
                                     control={control}
-                                    render={({ field }) => (
+                                    render={({ field: { value, onChange } }) => (
                                         <Attachment
                                             label="Attachment"
-                                            value={field.value}
-                                            onChange={field.onChange}
+                                            value={value}
+                                            onChange={onChange}
                                         />
                                     )}
                                 />
@@ -286,7 +281,7 @@ const EventForm = () => {
                                     'cd-rounded-md hover:cd-bg-violet-600')}
                                     type='submit'
                                 >
-                                    {isLoadingForm ? 'Saving...' : mode === 'edit' ? 'Edit' : ' Create'}
+                                    {isLoadingForm ? 'Saving...' : mode === 'edit' ? 'Edit' : ' Create'} Event
 
                                 </button>
 
