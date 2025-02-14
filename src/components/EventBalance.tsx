@@ -16,7 +16,6 @@ const EventBalance = (props: EventBalanceProps) => {
 
     const month = parseInt(id.substring(5, 7), 10);
 
-
     return (
 
         <div
@@ -29,7 +28,6 @@ const EventBalance = (props: EventBalanceProps) => {
                     'cd-text-zinc-800 cd-font-sans cd-font-semibold ',
                     'dark:cd-text-gray-300')}>
                     {MONTHS[month - 1]} {id.slice(0, 4)}</h2>
-
             </section>
 
             <div className="cd-border-b cd-border-gray-200  dark:cd-border-zinc-500"></div>
@@ -40,7 +38,6 @@ const EventBalance = (props: EventBalanceProps) => {
                         key={event.id}
                         className='cd-p-2 cd-rounded hover:cd-bg-slate-400 cd-transition-colors'
                         data-tooltip-id={`tooltip-${event.id}`}
-                        data-tooltip-content={event.description}
                     >
                         <a href={`/events/form/${event.id}`}                        >
 
@@ -62,26 +59,22 @@ const EventBalance = (props: EventBalanceProps) => {
                             </div>
                             <div className="cd-border-b cd-border-gray-200 cd-w-full cd-h-[1px] cd-mb-[0.5rem] dark:cd-border-zinc-500">
                             </div>
+
+
+                            <ReactTooltip id={`tooltip-${event.id}`} place="bottom-center">
+                                <div className="cd-flex cd-flex-col cd-items-center">
+                                    <p>{event.description}</p>
+                                    {event.attachment &&
+                                        <img
+                                            src={event.attachment}
+                                            alt="Event"
+                                            className="cd-w-32 cd-h-32 cd-object-cover cd-mt-2"
+                                        />
+                                    }
+
+                                </div>
+                            </ReactTooltip>
                         </a>
-
-                        <ReactTooltip id={`tooltip-${event.id}`} place="top">
-                            <div className="cd-flex cd-flex-col cd-items-center">
-                                <p>{event.description}</p>
-                                {event.attachment && (
-                                    
-                                        //{console.log(`Attachment for event ${event.id}: ${event.attachment}`)}
-                                        
-                                            <img
-                                                src={event.attachment}
-                                                alt="Event"
-                                                className="cd-w-32 cd-h-32 cd-object-cover cd-mt-2"
-                                            />
-                                        
-                                    
-                                )}
-                            </div>
-                        </ReactTooltip>
-
                     </div>
 
                 ))}

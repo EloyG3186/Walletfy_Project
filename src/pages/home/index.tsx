@@ -99,7 +99,7 @@ const Home = () => {
                             {!isLoading && data?.events && data.events.length > 0 && (
                                 <div className='cd-flex cd-flex-col cd-gap-4 cd-items-center cd-text-center dark:cd-text-white cd-pt-8'>
                                     <p className='cd-mb-2 cd-self-start cd-font-sans cd-font-medium cd-text-xl cd-text-center'>Your Events</p>
-                                    <div className='cd-grid cd-grid-cols-1 md:cd-grid-cols-2 lg:cd-grid-cols-3 cd-gap-4'>
+                                    <div className='cd-grid cd-grid-cols-1 md:cd-grid-cols-2 lg:cd-grid-cols-4 cd-gap-4'>
                                         {eventsFlow.flows.map(flow => {
                                             return (
                                                 <EventBalance key={flow.id} data={flow} />

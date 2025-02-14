@@ -251,12 +251,12 @@ const EventForm = () => {
                                 <Controller
                                     name='type'
                                     control={control}
-                                    render={({ field }) => (
+                                    render={({ field: { value, onChange } }) => (
                                         <SelectInput
                                             label="Type"
-                                            value={field.value}
+                                            value={value}
                                             options={['income', 'expense']}
-                                            onChange={field.onChange}
+                                            onChange={onChange}
                                         />
                                     )}
                                 />
@@ -265,11 +265,11 @@ const EventForm = () => {
                                 <Controller
                                     name='attachment'
                                     control={control}
-                                    render={({ field }) => (
+                                    render={({ field: { value, onChange } }) => (
                                         <Attachment
                                             label="Attachment"
-                                            value={field.value}
-                                            onChange={field.onChange}
+                                            value={value}
+                                            onChange={onChange}
                                         />
                                     )}
                                 />
