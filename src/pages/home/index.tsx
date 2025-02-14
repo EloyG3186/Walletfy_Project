@@ -68,7 +68,7 @@ const Home = () => {
                 )}
 
                 {!isLoading && data && (
-                    <div className="cd-mx-20 cd-my-10">
+                    <div className="cd-mx-20 cd-my-10 cd-pt-10">
                         <div className="cd-flex cd-justify-items-start cd-gap-y-[2rem] cd-font-sans ">
                             <div className='cd-flex cd-items-end cd-justify-between cd-w-full' >
                                 <div className='cd-flex cd-flex-row cd-items-end '>
@@ -98,7 +98,7 @@ const Home = () => {
 
                             {!isLoading && data?.events && data.events.length > 0 && (
                                 <div className='cd-flex cd-flex-col cd-gap-4 cd-items-center cd-text-center dark:cd-text-white cd-pt-8'>
-                                    <p className='cd-mb-2 cd-self-start cd-font-sans cd-font-medium cd-text-xl cd-text-center'>Your Events</p>
+                                    <p className='cd-mb-2 cd-pt-4 cd-self-start cd-font-sans cd-font-medium cd-text-xl cd-text-center'>Your Events</p>
                                     <div className='cd-grid cd-grid-cols-1 md:cd-grid-cols-2 lg:cd-grid-cols-4 cd-gap-4'>
                                         {eventsFlow.flows.map(flow => {
                                             return (
@@ -109,11 +109,12 @@ const Home = () => {
                                 </div>
                             )}
 
-                        {!isLoading && !data?.events && (
+                        {!isLoading && (!data?.events || data.events.length === 0) && (
                             <div className='cd-flex cd-flex-col cd-items-center cd-justify-center cd-h-full cd-pt-56 cd-pb-80'>
-                                <h1 className="cd-text-4xl cd-font-bold cd-text-center dark:cd-text-gray-300 ">
+                                <h1 className="cd-text-3xl cd-font-bold cd-text-center dark:cd-text-gray-300 ">
                                     Empty virtual wallet
                                 </h1>
+                            
                             </div>
                         )}
 

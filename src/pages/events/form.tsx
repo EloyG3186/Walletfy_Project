@@ -153,10 +153,11 @@ const EventForm = () => {
                                 })
                                 }
                             >
-                                <div className='cd-flex cd-flex-row cd-justify-center cd-pl-11'>
+                                <div className='cd-flex cd-flex-row cd-justify-center cd-items-center '>
                                     <button
                                         type='button'
                                         onClick={() => navigate('/')}
+                                        className="cd-flex cd-items-center"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -177,10 +178,10 @@ const EventForm = () => {
                                     </button>
 
 
-                                    <h1 className='cd-text-4xl cd-font-bold'>Event Form</h1>
+                                    <h1 className='cd-text-4xl cd-flex-grow cd-text-center cd-font-bold'>Event Form</h1>
                                 </div>
 
-                                <h1 className='cd-pb-8'>
+                                <h1 className='cd-font-bold'>
                                     {mode === 'edit' ? 'Edit' : 'Create'} Event
                                 </h1>
 

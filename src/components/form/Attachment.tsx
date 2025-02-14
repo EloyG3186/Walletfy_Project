@@ -21,6 +21,7 @@ const Attachment: React.FC<AttachmentProps> = ({ label, onChange, value, classNa
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImage(reader.result);
+                
                 // Generar un UUID para el archivo
                 onChange({
                     ...e,

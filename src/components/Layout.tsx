@@ -13,7 +13,7 @@ const Layout = () => {
             <header className={
                 
                 "cd-fixed cd-top-0 cd-left-0 cd-right-0 cd-w-full " +
-                "cd-bg-zinc-800" +
+                "dark:cd-bg-zinc-800 cd-bg-white " +
                 "cd-font-sans cd-header cd-flex " +
                 "cd-items-center cd-justify-between " +
                 "cd-p-4 cd-shadow-md"
