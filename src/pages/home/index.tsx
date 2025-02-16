@@ -58,7 +58,7 @@ const Home = () => {
     const isLoading = isLoadingOrRefetchQuery(eventQuery);
 
     return (
-        <div id="home" className="cd-min-h-screen">
+        <div id="home" className="cd-h-full cd-overflow-hidden ">
             <React.Fragment>
                 {isLoading && (
                     <p className="cd-py-52 cd-text-2xl cd-text-zinc-800 dark:cd-text-gray-300 cd-font-bold cd-font-sans cd-text-center">
