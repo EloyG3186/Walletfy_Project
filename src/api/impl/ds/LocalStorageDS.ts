@@ -21,7 +21,7 @@ class LocalStorageDS extends DataDS {
         }
     }
 
-    async loadEvents(type?: string) {
+    async loadEvents() {
         try {
             await sleep();
             const events = this.getEvents();
