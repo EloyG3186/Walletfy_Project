@@ -19,7 +19,7 @@ const EventBalance = (props: EventBalanceProps) => {
     return (
 
         <div
-            className={$('cd-flex cd-h-fit cd-rounded-xl cd-px-8 cd-py-2 cd-flex-col cd-bg-gray-100 ',
+            className={$('cd-flex cd-rounded-xl cd-px-8 cd-py-2 cd-flex-col cd-bg-gray-100 ',
                 'dark:cd-bg-zinc-700 dark:cd-border dark:cd-border-gray-600 cd-shadow-2xl')}>
 
             <section className="cd-flex cd-justify-between cd-items-center cd-px-[4rem] cd-py-[0.5rem]">
