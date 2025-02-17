@@ -61,7 +61,7 @@ const EventBalance = (props: EventBalanceProps) => {
                             </div>
 
 
-                            <ReactTooltip id={`tooltip-${event.id}`} place="bottom-center">
+                            <ReactTooltip id={`tooltip-${event.id}`} place="bottom-end">
                                 <div className="cd-flex cd-flex-col cd-items-center">
                                     <p>{event.description}</p>
                                     {event.attachment &&
