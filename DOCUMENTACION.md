@@ -79,6 +79,10 @@ cd Walletfy_Project
 
 DESPLIEGUE:
 
+```js
+https://walletfy-project.pages.dev/
+```
+
 El despliegue de la aplicación se realizó con la ayuda de CloudFlare Pages, pero antes fue necesario realizar algunas modificaciones en el proyecto para garantizar su correcto funcionamiento en producción. A continuación, se detallan los pasos que fueron necesarios para el despliegue de el proyecto usando React con TypeScript. 
 
 1. Preparación del Proyecto 
@@ -97,6 +101,8 @@ npm run build
 ```js
 Walletfy_project/despliegueCloudFlare/paso1.png...
 ```
+
+
 
 
 
