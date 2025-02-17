@@ -1,7 +1,7 @@
 import moment from "moment"
 import { $ } from "@utils/styles";
 import { FlowType, MONTHS } from "@customTypes/event"
-import React, { useEffect } from "react";
+import React from "react";
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 type EventBalanceProps = {
@@ -11,7 +11,7 @@ type EventBalanceProps = {
 }
 
 const EventBalance = (props: EventBalanceProps) => {
-    const { index, data, children } = props
+    const { data } = props
     const { id, events, income, expense, monthly, global } = data;
 
     const month = parseInt(id.substring(5, 7), 10);

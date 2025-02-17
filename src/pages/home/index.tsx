@@ -3,7 +3,7 @@ import { QKeys } from "@constants/query";
 import { isLoadingOrRefetchQuery } from "@utils/query";
 import NumberInput from '@components/form/NumberInput';
 import Button from '@components/form/Button';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from 'react';
 
@@ -12,7 +12,6 @@ import { EventProcessor } from '@utils/EventProcessor';
 
 import DataRepo from "@api/datasource";
 import EventBalance from '@components/EventBalance';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const INITIAL_FLOWS = {
     initialMoney: 0,
@@ -22,7 +21,6 @@ const INITIAL_FLOWS = {
 const Home = () => {
 
     const { state } = useParams<{ state: string }>();
-    const navigate = useNavigate();
     const [initialMoney, setInitialMoney] = useState(0);
     const [eventsFlow, setEventsFlow] = useState<EventFlow>(INITIAL_FLOWS);
 
@@ -38,15 +36,6 @@ const Home = () => {
         },
     });
 
-
-    const editEvent = (id: string) => {
-        const eventToEdit = eventsFlow.flows.flatMap(flow => flow.events).find(event => event.id === id);
-        if (eventToEdit) {
-            navigate(`/events/form/${id}`);
-        }
-    };
-
-
     useEffect(() => {
         if (eventQuery.data?.events) {
             const processedEventsFlow = EventProcessor.processEvents(eventQuery.data.events, eventsFlow.initialMoney);
@@ -58,7 +47,7 @@ const Home = () => {
     const isLoading = isLoadingOrRefetchQuery(eventQuery);
 
     return (
-        <div id="home" className="cd-min-h-screen">
+        <div id="home" className="cd-h-full cd-overflow-hidden ">
             <React.Fragment>
                 {isLoading && (
                     <p className="cd-py-52 cd-text-2xl cd-text-zinc-800 dark:cd-text-gray-300 cd-font-bold cd-font-sans cd-text-center">
